@@ -1,0 +1,79 @@
+/**
+ * SYNC-OS GLOBAL STYLING: The Tailwind design system and Mica component definitions.
+ * Implements architectural design principles: Architectural Honesty and High-Density Typography.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans overflow-hidden select-none transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .mica {
+    @apply bg-white/70 dark:bg-black/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-lg transition-all duration-300;
+    will-change: transform, opacity, width, height;
+    transform: translateZ(0); /* Force GPU */
+  }
+  
+  .mica-dark {
+    @apply bg-black/60 backdrop-blur-xl border border-white/10 shadow-2xl;
+    will-change: transform, opacity;
+  }
+
+  /* Butter Smooth Transitions */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    @apply antialiased;
+  }
+
+  .win-shadow {
+    @apply shadow-2xl shadow-black/30;
+  }
+
+  .win-button {
+    @apply transition-all duration-200 active:scale-95 hover:bg-black/5 dark:hover:bg-white/10 rounded-md p-2;
+    min-height: 44px; /* Better touch targets for mobile */
+    min-width: 44px;
+  }
+
+  /* Markdown Styling */
+  .prose table {
+    @apply w-full border-collapse my-4 text-[11px];
+  }
+
+  .prose th, .prose td {
+    @apply border border-black/10 dark:border-white/10 p-2 text-left;
+  }
+
+  .prose th {
+    @apply bg-black/5 dark:bg-white/5 font-bold;
+  }
+
+  .prose ul, .prose ol {
+    @apply pl-6 my-2 list-disc;
+  }
+
+  .prose ol {
+    @apply list-decimal;
+  }
+
+  .prose li {
+    @apply my-1;
+  }
+
+  .prose h1, .prose h2, .prose h3 {
+    @apply font-bold mt-4 mb-2 text-gray-900 dark:text-white;
+  }
+
+  .prose h1 { @apply text-base; }
+  .prose h2 { @apply text-sm; }
+  .prose h3 { @apply text-xs; }
+}
+
