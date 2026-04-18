@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user basic information and study preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "grade": { "type": "string" },
+        "lastActive": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName"]
+    },
+    "StudyNote": {
+      "title": "Study Note",
+      "description": "User created notes in the Notepad app",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "content"]
+    },
+    "LearningModule": {
+      "title": "Learning Module",
+      "description": "AI generated study modules (pointwise notes, flashcards, tests)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "topic": { "type": "string" },
+        "type": { "type": "string", "enum": ["pointwise", "flashcards", "test"] },
+        "data": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "topic", "type", "data"]
+    },
+    "ProgressUpdate": {
+      "title": "Progress Update",
+      "description": "Real-time tracking of student progress",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "subject": { "type": "string" },
+        "progress": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "subject", "progress"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "UserProfile",
+      "description": "User profile documents"
+    },
+    "/notes/{noteId}": {
+      "schema": "StudyNote",
+      "description": "User study notes"
+    },
+    "/modules/{moduleId}": {
+      "schema": "LearningModule",
+      "description": "AI generated learning modules"
+    },
+    "/progress/{progressId}": {
+      "schema": "ProgressUpdate",
+      "description": "Real-time progress tracking data"
+    }
+  }
+}
